@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="EduAngel.Application/EduAngel.Application.csproj" />
+  <Project Path="EduAngel.Domain/EduAngel.Domain.csproj" />
+  <Project Path="EduAngel.Infrastructure/EduAngel.Infrastructure.csproj" />
+  <Project Path="EduAngel.WinForms/EduAngel.WinForms.csproj" />
+</Solution>
