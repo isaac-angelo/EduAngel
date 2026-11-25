@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# EduAngel - configuração local com credenciais do banco
+/EduAngel.WinForms/appsettings.json

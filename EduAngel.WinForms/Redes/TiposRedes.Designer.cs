@@ -34,7 +34,6 @@
             salvarBotao = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             containePainel = new Panel();
-            ativo = new CheckBox();
             nome = new TextBox();
             tipoDeRede = new Label();
             id = new TextBox();
@@ -60,6 +59,7 @@
             novoBotao.Name = "novoBotao";
             novoBotao.Size = new Size(23, 22);
             novoBotao.Text = "toolStripButton1";
+            novoBotao.Click += novoBotao_Click;
             // 
             // salvarBotao
             // 
@@ -69,6 +69,7 @@
             salvarBotao.Name = "salvarBotao";
             salvarBotao.Size = new Size(23, 22);
             salvarBotao.Text = "toolStripButton2";
+            salvarBotao.Click += salvarBotao_Click;
             // 
             // toolStripSeparator1
             // 
@@ -78,25 +79,14 @@
             // containePainel
             // 
             containePainel.BorderStyle = BorderStyle.FixedSingle;
-            containePainel.Controls.Add(ativo);
             containePainel.Controls.Add(nome);
             containePainel.Controls.Add(tipoDeRede);
             containePainel.Controls.Add(id);
             containePainel.Controls.Add(label1);
             containePainel.Location = new Point(12, 28);
             containePainel.Name = "containePainel";
-            containePainel.Size = new Size(414, 110);
+            containePainel.Size = new Size(414, 90);
             containePainel.TabIndex = 1;
-            // 
-            // ativo
-            // 
-            ativo.AutoSize = true;
-            ativo.Location = new Point(100, 75);
-            ativo.Name = "ativo";
-            ativo.Size = new Size(54, 19);
-            ativo.TabIndex = 5;
-            ativo.Text = "Ativo";
-            ativo.UseVisualStyleBackColor = true;
             // 
             // nome
             // 
@@ -134,7 +124,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(438, 150);
+            ClientSize = new Size(438, 134);
             Controls.Add(containePainel);
             Controls.Add(toolStrip1);
             KeyPreview = true;
@@ -159,7 +149,6 @@
         private ToolStripButton salvarBotao;
         private ToolStripSeparator toolStripSeparator1;
         private Panel containePainel;
-        private CheckBox ativo;
         private TextBox nome;
         private Label tipoDeRede;
         private TextBox id;

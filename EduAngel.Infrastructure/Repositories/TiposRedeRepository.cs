@@ -4,11 +4,11 @@ using MySqlConnector;
 
 namespace EduAngel.Infrastructure.Repositories
 {
-    public class TipoRedeRepository : ITipoRedeRepository
+    public class TiposRedeRepository : ITipoRede
     {
         private readonly string _connectionString;
 
-        public TipoRedeRepository(string connectionString)
+        public TiposRedeRepository(string connectionString)
         {
             if (string.IsNullOrWhiteSpace(connectionString))
             {
@@ -20,9 +20,9 @@ namespace EduAngel.Infrastructure.Repositories
             _connectionString = connectionString;
         }
 
-        public async Task<IReadOnlyList<TipoRede>> ListarAsync()
+        public async Task<IReadOnlyList<TiposRedes>> ListarAsync()
         {
-            var tiposRede = new List<TipoRede>();
+            var tiposRede = new List<TiposRedes>();
 
             await using var conexao =
                 new MySqlConnection(_connectionString);
@@ -40,18 +40,17 @@ namespace EduAngel.Infrastructure.Repositories
 
             while (await leitor.ReadAsync())
             {
-                tiposRede.Add(new TipoRede
+                tiposRede.Add(new TiposRedes
                 {
                     Id = leitor.GetInt32("id"),
-                    Nome = leitor.GetString("nome"),
-                    Ativo = leitor.GetBoolean("ativo")
+                    Nome = leitor.GetString("nome")
                 });
             }
 
             return tiposRede;
         }
 
-        public async Task<TipoRede?> ObterPorIdAsync(int id)
+        public async Task<TiposRedes?> ObterPorIdAsync(int id)
         {
             await using var conexao =
                 new MySqlConnection(_connectionString);
@@ -72,18 +71,17 @@ namespace EduAngel.Infrastructure.Repositories
 
             if (await leitor.ReadAsync())
             {
-                return new TipoRede
+                return new TiposRedes
                 {
                     Id = leitor.GetInt32("id"),
                     Nome = leitor.GetString("nome"),
-                    Ativo = leitor.GetBoolean("ativo")
                 };
             }
 
             return null;
         }
 
-        public async Task<int> AdicionarAsync(TipoRede tipoRede)
+        public async Task<int> AdicionarAsync(TiposRedes tipoRede)
         {
             await using var conexao =
                 new MySqlConnection(_connectionString);
@@ -98,14 +96,13 @@ namespace EduAngel.Infrastructure.Repositories
             await using var comando = new MySqlCommand(sql, conexao);
 
             comando.Parameters.AddWithValue("@nome", tipoRede.Nome);
-            comando.Parameters.AddWithValue("@ativo", tipoRede.Ativo);
 
             await comando.ExecuteNonQueryAsync();
 
             return checked((int)comando.LastInsertedId);
         }
 
-        public async Task AtualizarAsync(TipoRede tipoRede)
+        public async Task AtualizarAsync(TiposRedes tipoRede)
         {
             await using var conexao =
                 new MySqlConnection(_connectionString);
@@ -123,7 +120,6 @@ namespace EduAngel.Infrastructure.Repositories
 
             comando.Parameters.AddWithValue("@id", tipoRede.Id);
             comando.Parameters.AddWithValue("@nome", tipoRede.Nome);
-            comando.Parameters.AddWithValue("@ativo", tipoRede.Ativo);
 
             await comando.ExecuteNonQueryAsync();
         }

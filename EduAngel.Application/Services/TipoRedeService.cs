@@ -5,27 +5,27 @@ namespace EduAngel.Application.Services
 {
     public class TipoRedeService
     {
-        private readonly ITipoRedeRepository _repository;
+        private readonly ITipoRede _repository;
 
-        public TipoRedeService(ITipoRedeRepository repository)
+        public TipoRedeService(ITipoRede repository)
         {
             ArgumentNullException.ThrowIfNull(repository);
             _repository = repository;
         }
 
-        public Task<IReadOnlyList<TipoRede>> ListarAsync()
+        public Task<IReadOnlyList<TiposRedes>> ListarAsync()
         {
             return _repository.ListarAsync();
         }
 
-        public Task<TipoRede?> ObterPorIdAsync(int id)
+        public Task<TiposRedes?> ObterPorIdAsync(int id)
         {
             ValidarId(id);
 
             return _repository.ObterPorIdAsync(id);
         }
 
-        public async Task<int> AdicionarAsync(TipoRede tipoRede)
+        public async Task<int> AdicionarAsync(TiposRedes tipoRede)
         {
             Validar(tipoRede);
 
@@ -36,7 +36,7 @@ namespace EduAngel.Application.Services
             return id;
         }
 
-        public async Task AtualizarAsync(TipoRede tipoRede)
+        public async Task AtualizarAsync(TiposRedes tipoRede)
         {
             Validar(tipoRede);
             ValidarId(tipoRede.Id);
@@ -53,7 +53,7 @@ namespace EduAngel.Application.Services
             await _repository.AtualizarAsync(tipoRede);
         }
 
-        private static void Validar(TipoRede tipoRede)
+        private static void Validar(TiposRedes tipoRede)
         {
             ArgumentNullException.ThrowIfNull(tipoRede);
 
